@@ -1,0 +1,48 @@
+﻿<Window x:Class="CrealityKEGCodeRunner.MainWindow"
+        x:ClassModifier="internal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CrealityKEGCodeRunner"
+        mc:Ignorable="d"
+        Title="Creality KE G-Code Runner" Height="450" Width="800"
+        Closing="Window_Closing">
+    <Grid Margin="9">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Label>URL:</Label>
+        <TextBox x:Name="_url" Margin="3" Grid.Column="1" TextChanged="_url_TextChanged" />
+        <Button x:Name="_send" Padding="6,2" Margin="1" Grid.Column="2" Click="_send_Click">Send</Button>
+
+        <TextBlock TextWrapping="Wrap" Margin="3" Grid.Row="2" Grid.ColumnSpan="3">
+            To send G-Code to the printer, type in the G-Code and click Send. This will upload
+            a G-Code file to the printer and run it. It'll create a file called "Ad-Hoc Script.gcode".
+            You can delete this file afterward.
+            
+            By default, all text will be sent to the printer. If you select some G-Code
+            before clicking Send, only that text will be uploaded to the printer.
+        </TextBlock>
+
+        <Border BorderBrush="Silver" BorderThickness="1" Margin="3" Grid.Row="3" Grid.ColumnSpan="3">
+            <avalonEdit:TextEditor
+                xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                x:Name="_gcode"
+                FontFamily="Consolas"
+                FontSize="10pt" />
+        </Border>
+
+        <Label Grid.Row="1">Status:</Label>
+        <Label x:Name="_status" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" />
+    </Grid>
+</Window>
